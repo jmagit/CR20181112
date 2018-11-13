@@ -8,10 +8,14 @@ import { IndraCoreModule, LoggerService, ERROR_LEVEL } from 'src/indra-core';
 import { ClientesModule } from './clientes/clientes.module';
 import { ComunModule } from './comun/comun.module';
 import { environment } from 'src/environments/environment';
+import { HomeComponent } from './home/home.component';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    DemoComponent
   ],
   imports: [
     BrowserModule, FormsModule,
