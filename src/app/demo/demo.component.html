@@ -1,4 +1,4 @@
-<h1>Hola {{nombre}}</h1>
+<h1>Hola {{nombre | elipsis:30 | uppercase}}</h1>
 <p>
   <input type="text" [(ngModel)]="nombre">
   <input type="button" value="saluda" (click)="saluda()">
@@ -7,7 +7,7 @@
   <input type="button" value="notifica" (click)="notify.add('Esto es una demo')">
   <input type="button" value="cambia" (click)="cambia()">
 </p>
-<p [textContent]="resultado"></p>
+<p [textContent]="resultado">Esto se pierde</p>
 <p [innerHTML]="resultado"></p>
 <p [hidden]="!visible">Ahora me ves</p>
 <p *ngIf="visible">Ahora existo</p>
@@ -16,12 +16,12 @@
 </p>
 <p [class.invisible]="!visible">Ahora me ves</p>
 <p>
-  Calcula: 2 + 2 = {{2 + 2}} = {{calcula(2, 2)}}
+  Calcula: 2 + 2 = {{2 + 2}} = {{calcula(2, 2) | currency:'EUR':'symbol':'1.2-2'}}
 </p>
 <ul>
-  <li *ngFor="let item of listado; let ind=index; let fondo=odd;"
+  <li *ngFor="let item of listado | slice:-5; let ind=index; let fondo=odd;"
     [style.background-color]="fondo ? 'LightBlue' : 'Lavender'">
-    {{item.nombre}} ({{item.id}}),
+    {{item.nombre | titlecase}} ({{item.id}}),
     elemento {{ind + 1}} de {{listado.length}}
   </li>
 </ul>
@@ -34,4 +34,8 @@
   Seleccionado: {{idProvincia}}
   <input type="text" value="Tabarnia" #txtProvincia>
   <input type="button" value="añadir" (click)="add(txtProvincia.value)">
+</p>
+<indra-sizer [(size)]="fontSize" ></indra-sizer>
+<p [style.font-size.px]="fontSize">
+{{listado | json}}
 </p>

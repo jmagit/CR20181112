@@ -10,12 +10,16 @@ import { ComunModule } from './comun/comun.module';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
 import { DemoComponent } from './demo/demo.component';
+import { NotificationComponent } from './notification/notification.component';
+import { DinamicoComponent } from './dinamico/dinamico.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DemoComponent
+    DemoComponent,
+    NotificationComponent,
+    DinamicoComponent
   ],
   imports: [
     BrowserModule, FormsModule,
