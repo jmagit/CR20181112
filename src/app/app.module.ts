@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IndraCoreModule } from 'src/indra-core';
+import { IndraCoreModule, LoggerService } from 'src/indra-core';
 import { ClientesModule } from './clientes/clientes.module';
 import { ComunModule } from './comun/comun.module';
 
@@ -12,11 +13,13 @@ import { ComunModule } from './comun/comun.module';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, FormsModule,
     IndraCoreModule,
     AppRoutingModule, ClientesModule, ComunModule,
   ],
-  providers: [],
+  providers: [
+    LoggerService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
