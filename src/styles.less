@@ -1,0 +1,35 @@
+@colorError: red;
+@colorAviso: blue;
+
+.error {
+  color: @colorError;
+}
+.aviso {
+  color: @colorAviso;
+}
+
+.notificaciones {
+  border: 1px solid red;
+  border-radius: 5pt;
+  background: rgb(255, 255, 109);
+  padding: 0pt 5pt 5pt 5pt;
+  margin: 5pt;
+  margin-top: 1pt;
+
+  -webkit-box-shadow: 5px 7px 5px 0px rgba(255, 0, 0, 0.49);
+  -moz-box-shadow: 5px 7px 5px 0px rgba(255, 0, 0, 0.49);
+  box-shadow: 5px 7px 5px 0px rgba(255, 0, 0, 0.49);
+  ul {
+    margin: 1pt;
+    li {
+      margin: 2pt;
+      button {
+        float: right;
+      }
+    }
+  }
+}
+
+.center {
+  text-align: center;
+}
