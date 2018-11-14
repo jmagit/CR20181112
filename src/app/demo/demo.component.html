@@ -1,3 +1,28 @@
+<table>
+  <tr>
+    <td><calculadora (updated)="ponResultado('UNO', $event)"></calculadora></td>
+    <td >
+      <table border="1">
+        <tr><th>Nº</th><th>Calc</th><th>Resultado</th></tr>
+        <tr  *ngFor="let r of resultados | slice:-5">
+          <td class="text-right">{{r.pos}}</td>
+          <td>{{r.origen}}</td>
+          <!-- <td class="text-right">{{r.valor | number:'1.0-8' }}</td> -->
+          <td class="text-right">{{r.valor | localnumber:idioma:'1.0-8' }}</td>
+        </tr>
+        <tr>
+          <td colspan="3">Idioma: <select [(ngModel)]="idioma" >
+            <option *ngFor="let p of idiomas" [value]="p.codigo">{{p.region}}</option>
+          </select>
+        </td>
+        </tr>
+      </table>
+    </td>
+    <td><calculadora [init]="valCalculadora" (updated)="valCalculadora=$event"></calculadora></td>
+  </tr>
+</table>
+<input type="number" [(ngModel)] = "valCalculadora">
+
 <h1>Hola {{nombre | elipsis:30 | uppercase}}</h1>
 <p>
   <input type="text" [(ngModel)]="nombre">
@@ -5,6 +30,7 @@
   <input type="button" value="despide" (click)="despide()">
   <input type="button" value="di algo" (click)="di('algo')">
   <input type="button" value="notifica" (click)="notify.add('Esto es una demo')">
+  <input type="button" value="avisa " (click)="notify.add('Esto es un aviso', 1)">
   <input type="button" value="cambia" (click)="cambia()">
 </p>
 <p [textContent]="resultado">Esto se pierde</p>
