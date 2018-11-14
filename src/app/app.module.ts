@@ -18,7 +18,7 @@ import { DemoComponent } from './demo/demo.component';
 import { NotificationComponent } from './notification/notification.component';
 import { DinamicoComponent } from './dinamico/dinamico.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
-import { PersonasComponent } from './personas/personas.component';
+import { PERSONAS_COMPONENTS } from './personas/personas.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { PersonasComponent } from './personas/personas.component';
     NotificationComponent,
     DinamicoComponent,
     CalculadoraComponent,
-    PersonasComponent
+    PERSONAS_COMPONENTS
   ],
   imports: [
     BrowserModule, FormsModule,

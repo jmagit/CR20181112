@@ -68,5 +68,31 @@ export class PersonasViewModelService {
     }
   }
 
+  public cancel(): void {
+    this.elemento = {};
+    this.idOriginal = null;
+    this.list();
+  }
+  public send(): void {
+    switch (this.modo) {
+      case 'add':
+        this.listado.push(this.elemento);
+        this.cancel();
+        break;
+      case 'edit':
+        // tslint:disable-next-line:triple-equals
+        const indice = this.listado.findIndex(item => item[this.pk] == this.idOriginal);
+        if (indice >= 0) {
+          this.listado[indice] = this.elemento;
+          this.cancel();
+        } else {
+          this.notify.add('Elemento no encontrado.');
+        }
+        break;
+      case 'view':
+        this.cancel();
+        break;
+    }
+  }
 
 }
