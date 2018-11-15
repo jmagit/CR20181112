@@ -6,6 +6,12 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {
+  Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  CanActivate
+} from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -34,7 +40,11 @@ export class AuthService {
     this.authToken = authToken;
     this.name = name;
     if (localStorage) {
-      localStorage.AuthService = JSON.stringify({ isAuth: true, authToken, name });
+      localStorage.AuthService = JSON.stringify({
+        isAuth: true,
+        authToken,
+        name
+      });
     }
   }
   logout() {
@@ -62,5 +72,15 @@ export class AuthInterceptor implements HttpInterceptor {
       headers: req.headers.set('Authorization', this.auth.AuthorizationHeader)
     });
     return next.handle(authReq);
+  }
+}
+@Injectable({ providedIn: 'root' })
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    return this.authService.isAutenticated;
   }
 }
