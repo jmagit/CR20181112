@@ -5,6 +5,7 @@ registerLocaleData(localeEs, 'es', localeEsExtra);
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,10 @@ import { NotificationComponent } from './notification/notification.component';
 import { DinamicoComponent } from './dinamico/dinamico.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { PERSONAS_COMPONENTS } from './personas/personas.component';
+import { PersonasViewModelService, PersonasViewModelDAOService } from './personas/personas.service';
+import { AuthInterceptor } from './comun/seguridad.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -28,16 +33,21 @@ import { PERSONAS_COMPONENTS } from './personas/personas.component';
     NotificationComponent,
     DinamicoComponent,
     CalculadoraComponent,
-    PERSONAS_COMPONENTS
+    PERSONAS_COMPONENTS,
+    PageNotFoundComponent,
+    MenuComponent
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, FormsModule, HttpClientModule,
     IndraCoreModule,
     AppRoutingModule, ClientesModule, ComunModule,
   ],
   providers: [
     LoggerService,
     { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL },
+    { provide: PersonasViewModelService, useClass: PersonasViewModelDAOService},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, },
+
   ],
   bootstrap: [AppComponent]
 })
