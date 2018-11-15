@@ -24,6 +24,7 @@ const routes: Routes = [
     { path: ':id', component: PersonasViewComponent},
     { path: ':id/:kk', component: PersonasViewComponent},
   ]},
+  { path: '404.html', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
 
